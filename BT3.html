@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai tap 3</title>
+</head>
+<body>
+<script>
+    let Mobile = function (power) {
+        this.bettynow = power;
+        this.inbox = "";
+        this.sent = "";
+        this.typingMessage = "";
+        this.powerOnOff = true;
+        if (this.bettynow <= 0) {
+            this.powerOnOff = false;
+        }
+        this.getCheckPower = function () {
+            return this.powerOnOff;
+        };
+        this.setPowerOn = function () {
+            if (this.bettynow > 0) {
+                if (this.powerOnOff) {
+                    this.powerOnOff = false;
+                } else {
+                    this.powerOnOff = true;
+                }
+            } else {
+                alert("Dien thoai het pin, vui long xac pin")
+                this.powOnOff = false;
+
+            }
+        };
+        this.setPower = function () {
+            this.bettynow = 100;
+        };
+        this.setCreatMessage = function () {
+            if (this.powerOnOff) {
+                this.typingMessage = prompt("Hay soan tin nhan");
+                this.bettynow--;
+                console.log(this.typingMessage);
+            }
+        };
+        this.getInbox = function () {
+            if (this.powerOnOff) {
+                this.bettynow--;
+                return this.inbox;
+            }
+        };
+        this.setSentMessage = function (that) {
+            if (this.powerOnOff) {
+                that.inbox = this.typingMessage;
+                this.bettynow--;
+                console.log(this.inbox);
+                console.log(this.bettynow);
+            }
+        };
+        this.getSent = function () {
+            if (this.powerOnOff) {
+                this.sent = this.typingMessage;
+                this.bettynow--;
+                return this.setSentMessage;
+            }
+        };
+        console.log(this.inbox);
+    };
+
+    let nokia = new Mobile(0);
+    let iphone = new Mobile(0);
+    nokia.setPower();
+    iphone.setPower();
+    nokia.setPowerOn();
+    iphone.setPowerOn();
+    nokia.setCreatMessage();
+    nokia.setSentMessage(iphone);
+    alert(iphone.getInbox());
+</script>
+</body>
+</html>

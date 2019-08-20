@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Thuc hanh 4</title>
+</head>
+<body>
+<canvas id="myCanvas" width="1368px" height="768px" style="border:1px solid #d3d3d3;"></canvas>
+<script>
+    let Rectangle=function (x,y) {
+        this.width=x;
+        this.height=y;
+        this.getAcrege=function () {
+            return this.width*this.height;
+        };
+        this.getPerimeter=function () {
+            return (this.width+this.height)*2;
+        };
+        this.setRectangle=function (x,y) {
+            this.width=x;
+            this.height=y;
+        }
+        
+    };
+    let changeRectangle=new Rectangle();
+    changeRectangle.setRectangle(500,300);
+    let acrege=changeRectangle.getAcrege();
+    let perimeter=changeRectangle.getPerimeter();
+    alert("Dien tich: "+acrege +"<br>"+"Chu Vi: "+ perimeter);
+
+
+    function showRectangle() {
+        let ctx=document.getElementById('myCanvas').getContext("2d");
+        let rectangle=new  Rectangle(700,500);
+        let x=rectangle.width;
+        let y=rectangle.height;
+        ctx.moveTo(0,0);
+        ctx.lineTo(0,y);
+        ctx.moveTo(0,y);
+        ctx.lineTo(x,y);
+        ctx.moveTo(x,y);
+        ctx.lineTo(x,0);
+        ctx.moveTo(x,0);
+        ctx.lineTo(0,0);
+        ctx.strokeStyle='red';
+        ctx.stroke();
+    }
+    showRectangle();
+
+</script>
+</body>
+</html>

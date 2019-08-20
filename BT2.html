@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai tap 2</title>
+</head>
+<body>
+<script>
+    let Temperature=function (c) {
+        this.c=c;
+        this.getCToF=function () {
+            return this.c*1.8 +32;
+        };
+        this.getCToK=function () {
+            return this.c +273.15;
+        };
+    };
+
+    let temperature=new Temperature(25);
+    alert(temperature.getCToF()+ " " + temperature.getCToK());
+</script>
+</body>
+</html>
