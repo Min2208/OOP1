@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8035c4c-4248-4ead-ae37-aa46d2d8cb8b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/QLSP2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Quan-Ly-San-Pham.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo2.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BT2-2.html" beforeDir="false" afterPath="$PROJECT_DIR$/BT2-2.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,6 +30,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Ung-dung-QL-SP" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -52,7 +56,7 @@
       <updated>1566268068485</updated>
       <workItem from="1566268069787" duration="20309000" />
       <workItem from="1566315112747" duration="4939000" />
-      <workItem from="1566355296970" duration="1932000" />
+      <workItem from="1566355296970" duration="21136000" />
     </task>
     <servers />
   </component>

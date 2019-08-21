@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quan ly san pham</title>
+    <style>
+        .edit {
+            text-align: center;
+            background-color: chartreuse;
+            width: 10%;
+        }
+
+        .delete {
+            text-align: center;
+            background-color: dodgerblue;
+            width: 10%;
+
+        }
+
+        .crows {
+            height: 100%;
+            width: 80%;
+        }
+
+        .input {
+            width: 100%;
+            height: 40px;
+            background-color: snow;
+            font-family: Chandas;
+            color: cornflowerblue;
+            font-style: oblique;
+            font-size: 20px;
+        }
+        .personinput {
+            width: 100%;
+            height: 40px;
+            background-color: snow;
+            font-family: Chandas;
+            color: cornflowerblue;
+            font-style: oblique;
+            font-size: 20px;
+        }
+
+
+        #input {
+            width: 20%;
+            height: 30px;
+            background-color: aliceblue;
+
+        }
+
+        #add {
+            width: 50px;
+            height: 36px;
+            background-color: hotpink;
+        }
+        #container{
+            width: 100%;
+        }
+        .row{
+            width: 50%;
+            float: left;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<h2>Add New Product</h2>
+<input id="input">
+<button onclick="addName(admin)">Add</button>
+<h2>Display All Product</h2>
+<div id="container">
+    <div class="row">
+    <h4>Admin Product Name</h4>
+    <p id="result"></p>
+    </div>
+    <div class="row">
+    <h4>Person Product Name</h4>
+    <p id="resultPerson"></p>
+    </div>
+</div>
+<script>
+    function AdminProduct(value) {
+        this.listProduct = value;
+        this.showProduct = function () {
+            let result = "<table width='90%'>";
+            for (let i = 0; i < this.listProduct.length; i++) {
+                result += "<tr bgcolor='#f5f5dc'>" + "<td ><input class='input'  id='" + i + "-name" + "' value='" + this.listProduct[i] + "' disabled></td>" + "<td onclick='editName(this)' class='edit' id='" + i + "-edit" + "'>Edit</td>" + "<td class='delete' onclick='deleteProduct(this)' id='" + i + "-delete" + "'>Delete</td>" + "</tr>";
+
+            }
+            result += "</table>";
+
+            return document.getElementById('result').innerHTML = result;
+        };
+        this.addProduct = function (value, person) {
+            this.listProduct.push(value);
+            person.listProduct = this.listProduct;
+            person.showProduct();
+            return this.showProduct();
+        };
+        this.editProduct = function (local, value, person) {
+            this.listProduct[local] = value;
+            person.listProduct = this.listProduct;
+            person.showProduct();
+        };
+        this.deleteProduct = function (local, person) {
+            this.listProduct.splice(local, 1);
+            person.listProduct = this.listProduct;
+            person.showProduct();
+            return this.showProduct();
+        };
+
+    }
+
+    function Person() {
+        this.listProduct = [];
+        this.showProduct = function () {
+            let result = "<table width='50%'>";
+            for (let i = 0; i < this.listProduct.length; i++) {
+                result += "<tr bgcolor='#f5f5dc'>" + "<td width='80%'><input class='personinput'   value='" + this.listProduct[i] + "' disabled></td></tr>";
+            }
+            result += "</table>";
+
+            return document.getElementById('resultPerson').innerHTML = result;
+        };
+
+    }
+
+    let admin = new AdminProduct(["Sony Xperia", "SamSung Galaxy Note 10", "Nokia 6", "Iphone XSMax", "Xiaomi Mi 5s", "Oppo A71"]);
+    let person = new Person();
+    admin.showProduct();
+    person.showProduct();
+
+    function addName(value) {
+        let addName = document.getElementById('input').value;
+        value.addProduct(addName, person);
+        document.getElementById('input').value = '';
+
+    }
+
+    function editName(name) {
+        name.id.split("-");
+        if (document.getElementById(name.id[0] + "-name").disabled == true) {
+            document.getElementById(name.id[0] + "-name").disabled = false;
+        } else {
+            document.getElementById(name.id[0] + "-name").disabled = true;
+        }
+        let value = document.getElementById(name.id[0] + "-name").value;
+        admin.editProduct(name.id[0], value, person);
+        console.log(admin.listProduct);
+    }
+
+    function deleteProduct(del) {
+        del.id.split("-");
+        let value = document.getElementById(del.id[0] + "-name").value;
+        if (confirm("ban co muon xoa item khong")) {
+            admin.deleteProduct(del.id[0], person);
+        }
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>QLSP2</title>
+    <style>
+        .edit {
+            text-align: center;
+            background-color: chartreuse;
+            width: 10%;
+        }
+
+        .delete {
+            text-align: center;
+            background-color: dodgerblue;
+            width: 10%;
+
+        }
+        button{
+            width: 60px;
+            height: 36px;
+        }
+
+        .crows {
+            height: 100%;
+            width: 80%;
+        }
+
+        .input {
+            width: 100%;
+            height: 30px;
+            background-color: snow;
+            font-family: Chandas;
+            color: cornflowerblue;
+            font-style: oblique;
+            font-size: 20px;
+        }
+
+        .personinput {
+            width: 100%;
+            height: 30px;
+            background-color: snow;
+            font-family: Chandas;
+            color: cornflowerblue;
+            font-style: oblique;
+            font-size: 20px;
+        }
+
+
+        #input1 {
+            width: 20%;
+            height: 30px;
+            background-color: aliceblue;
+
+        }
+
+        #input2 {
+            width: 20%;
+            height: 30px;
+            background-color: aliceblue;
+
+        }
+
+        #add {
+            width: 50px;
+            height: 36px;
+            background-color: hotpink;
+        }
+
+        #container {
+            width: 100%;
+        }
+
+        .row {
+            width: 100%;
+            float: left;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<h2>Add New Product</h2>
+<input id="input1">
+<button onclick="addName()">Add</button>
+<h2>Display All Product</h2>
+
+<div class="row">
+    <h4>Admin Product Name</h4>
+    <p id="result"></p>
+</div>
+<hr>
+
+
+<div class="row">
+    <h2>Seach a product</h2>
+    <input id="input2" onkeypress="filProduct()">
+    <button onclick="person.showProduct()">Reload</button>
+    <h4>Person Product Name</h4>
+    <p id="resultPerson"></p>
+</div>
+<script>
+    function AdminProduct(value) {
+        this.listProduct = value;
+        this.showProduct = function () {
+            let result = "<table width='50%'>";
+            for (let i = 0; i < this.listProduct.length; i++) {
+                result += "<tr bgcolor='#f5f5dc'>" + "<td ><input class='input'  id='" + i + "-name" + "' value='" + this.listProduct[i] + "' disabled></td>" + "<td onclick='editName(this)' class='edit' id='" + i + "-edit" + "'>Edit</td>" + "<td class='delete' onclick='deleteProduct(this)' id='" + i + "-delete" + "'>Delete</td>" + "</tr>";
+            }
+            result += "</table>";
+
+            return document.getElementById('result').innerHTML = result;
+        };
+        this.addProduct = function (person) {
+            let addName = document.getElementById('input1').value;
+
+            this.listProduct.push(addName);
+            person.listProduct = this.listProduct;
+            document.getElementById('input1').value = '';
+            return this.showProduct();
+        };
+        this.editProduct = function (name, person) {
+            name.id.split("-");
+            if (document.getElementById(name.id[0] + "-name").disabled == true) {
+                document.getElementById(name.id[0] + "-name").disabled = false;
+            } else {
+                document.getElementById(name.id[0] + "-name").disabled = true;
+            }
+            let value = document.getElementById(name.id[0] + "-name").value;
+            this.listProduct[name.id[0]] = value;
+            person.listProduct = this.listProduct;
+
+        };
+        this.deleteProduct = function (del, person) {
+            del.id.split("-");
+            let value = document.getElementById(del.id[0] + "-name").value;
+            if (confirm("ban co muon xoa item khong")) {
+                this.listProduct.splice(del.id[0], 1);
+                person.listProduct = this.listProduct;
+
+                return this.showProduct();
+            }
+        };
+    }
+
+    function Person() {
+        this.listProduct = [];
+        this.showProduct = function () {
+            let result = "<table width='50%'>";
+            for (let i = 0; i < this.listProduct.length; i++) {
+                result += "<tr bgcolor='#f5f5dc'>" + "<td width='80%'><input class='personinput'   value='" + this.listProduct[i] + "' disabled></td></tr>";
+            }
+            result += "</table>";
+
+            return document.getElementById('resultPerson').innerHTML = result;
+        };
+        this.setProduct = function (admin) {
+            this.listProduct = admin.listProduct;
+        };
+        this.filProduct = function () {
+            console.log('true');
+            let filter = document.getElementById('input2').value;
+            console.log(this.listProduct.includes(filter));
+
+            if (this.listProduct.includes(filter)) {
+                let result = "<table width='50%'>";
+                result += "<tr bgcolor='#f5f5dc'>" + "<td width='80%'><input class='personinput'   value='" + filter + "' disabled></td></tr>";
+                result += "</table>";
+
+                return document.getElementById('resultPerson').innerHTML = result;
+            }else if (filter=="") {
+                this.showProduct();
+
+            }else {
+                return document.getElementById('resultPerson').innerHTML = "Rac tiec! Khong tim thay san pham.";
+            }
+
+        }
+
+    }
+
+    let admin = new AdminProduct(["Sony Xperia", "SamSung Galaxy Note 10", "Nokia 6", "Iphone XSMax", "Xiaomi Mi 5s", "Oppo A71"]);
+    let person = new Person();
+    admin.showProduct();
+    person.setProduct(admin);
+    person.showProduct();
+
+    function addName() {
+        admin.addProduct(person);
+    }
+
+    function editName(name) {
+        admin.editProduct(name, person);
+    }
+
+    function deleteProduct(del) {
+        admin.deleteProduct(del, person);
+    }
+    function filProduct() {
+        person.filProduct();
+    }
+
+</script>
+</body>
+</html>
