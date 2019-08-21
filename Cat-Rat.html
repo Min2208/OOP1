@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tom and Jerry</title>
+</head>
+<body>
+<script>
+    
+    function Rat(name,weigth,speed,status) {
+        this.name=name;
+        this.weight=weigth;
+        this.speed=speed;
+        this.status=status;
+
+        this.sayRat=function () {
+            alert("chít chít");
+        };
+
+    }
+    function Cat(name,weigth,speed) {
+        this.name=name;
+        this.weigth=weigth;
+        this.speed=speed;
+        this.status=0;
+
+        this.sayCat=function () {
+            alert("meo meo");
+        };
+        this.catchRat=function (mouse) {
+            if (this.speed >mouse.speed && this.status==0){
+                mouse.sayRat();
+                this.status++;
+            }
+        };
+
+        this.eatRat=function (mouse) {
+            if (mouse.status && this.status ==1){
+                this.weigth=this.weigth+mouse.weight;
+                this.sayCat();
+                this.status--;
+            }
+        };
+    }
+    let tom=new Cat("tom",20,45);
+    let jerry=new Rat("jerry",5,40,false);
+    console.log(tom.weigth);
+    console.log(jerry.weight);
+    tom.catchRat(jerry);
+    tom.eatRat(jerry);
+    console.log(tom.weigth);
+</script>
+</body>
+</html>

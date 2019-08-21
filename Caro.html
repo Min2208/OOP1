@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Co ca ro</title>
+    <style>
+        .row{
+            width: 100%;
+            height: 30px;
+            border: 1px solid cornflowerblue;
+
+        }
+        .col{
+            width: 30px;
+            border: 1px solid cornflowerblue;
+            position: absolute;
+            float: left;
+            background-color: cornflowerblue;
+        }
+
+    </style>
+</head>
+<body>
+<script>
+
+    let value="X";
+    for (let i=0;i<20;i++){
+        let result="<div class='row'>";
+        for (let j=0;j<20;j++){
+            result+="<div class='col'>"+ value + "</div>"
+        }
+        result+="</div>";
+        document.write(result);
+    }
+
+</script>
+</body>
+</html>

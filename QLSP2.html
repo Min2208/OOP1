@@ -90,7 +90,6 @@
 </div>
 <hr>
 
-
 <div class="row">
     <h2>Seach a product</h2>
     <input id="input2" onkeypress="findProduct()">
@@ -112,7 +111,6 @@
         };
         this.addProduct = function (person) {
             let addName = document.getElementById('input1').value;
-
             this.listProduct.push(addName);
             person.listProduct = this.listProduct;
             document.getElementById('input1').value = '';
@@ -180,11 +178,8 @@
                 document.getElementById('total1').innerHTML=" ( "+ count + " Product )";
                 return document.getElementById('resultPerson').innerHTML = "Rac tiec! Khong tim thay san pham.";
             }
-
         }
-
     }
-
     let admin = new AdminProduct(["Sony Xperia", "SamSung Galaxy Note 10", "Nokia 6", "Iphone XsMax", "Xiaomi Mi 5s", "Oppo A71"]);
     let person = new Person();
     admin.showProduct();
