@@ -6,7 +6,7 @@
 </head>
 <body>
 <script>
-    let Mobile = function (power) {
+    function Mobile(power) {
         this.bettynow = power;
         this.inbox = "";
         this.sent = "";
@@ -63,7 +63,7 @@
             }
         };
         console.log(this.inbox);
-    };
+    }
 
     let nokia = new Mobile(0);
     let iphone = new Mobile(0);
