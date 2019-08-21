@@ -27,6 +27,9 @@
             apple.setWeight(1);
             this.weight++;
 
+
+          }else {
+              return alert("Ban da an het tao");
           }
 
         };
@@ -46,18 +49,28 @@
 
     }
     let apple=new Apple();
-    let adam=new Human("Adam",60,male);
-    let eva=new Human("Eva",45,female);
+    let adam=new Human("Adam",60,"male");
+    let eva=new Human("Eva",45,"female");
+    console.log(apple.weight);
     function eatApple() {
-        if (apple.getWeight()>0) {
-            adam.eatApple();
-            eva.eatApple();
+        if (apple.weight>0){
+       adam.eatApple(apple);
         }else {
             return;
         }
-        eatApple();
+        // console.log(apple.weight);
+        if (apple.weight>0) {
+            eva.eatApple(apple);
+        }else {
+            return;
+        }
+        // console.log(apple.weight);
+       eatApple();
     }
 
+    eatApple();
+    console.log(adam.weight);
+    console.log(eva.weight);
 
 </script>
 </body>
