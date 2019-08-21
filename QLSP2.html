@@ -85,7 +85,7 @@
 <h2>Display All Product</h2>
 
 <div class="row">
-    <h4>Admin Product Name</h4>
+    <h4>Admin Product Name<span id="total"></span></h4>
     <p id="result"></p>
 </div>
 <hr>
@@ -93,9 +93,9 @@
 
 <div class="row">
     <h2>Seach a product</h2>
-    <input id="input2" onkeypress="filProduct()">
+    <input id="input2" onkeypress="findProduct()">
     <button onclick="person.showProduct()">Reload</button>
-    <h4>Person Product Name</h4>
+    <h4>Person Product Name<span id="total1"></span></h4>
     <p id="resultPerson"></p>
 </div>
 <script>
@@ -107,7 +107,7 @@
                 result += "<tr bgcolor='#f5f5dc'>" + "<td ><input class='input'  id='" + i + "-name" + "' value='" + this.listProduct[i] + "' disabled></td>" + "<td onclick='editName(this)' class='edit' id='" + i + "-edit" + "'>Edit</td>" + "<td class='delete' onclick='deleteProduct(this)' id='" + i + "-delete" + "'>Delete</td>" + "</tr>";
             }
             result += "</table>";
-
+            document.getElementById('total').innerHTML=" ( "+ this.listProduct.length + " Product )";
             return document.getElementById('result').innerHTML = result;
         };
         this.addProduct = function (person) {
@@ -150,27 +150,34 @@
                 result += "<tr bgcolor='#f5f5dc'>" + "<td width='80%'><input class='personinput'   value='" + this.listProduct[i] + "' disabled></td></tr>";
             }
             result += "</table>";
-
+            document.getElementById('total1').innerHTML=" ( "+ this.listProduct.length + " Product )";
             return document.getElementById('resultPerson').innerHTML = result;
         };
         this.setProduct = function (admin) {
             this.listProduct = admin.listProduct;
         };
-        this.filProduct = function () {
+        this.seachProduct = function () {
             console.log('true');
             let filter = document.getElementById('input2').value;
             console.log(this.listProduct.includes(filter));
+            let count=0;
 
             if (this.listProduct.includes(filter)) {
                 let result = "<table width='50%'>";
                 result += "<tr bgcolor='#f5f5dc'>" + "<td width='80%'><input class='personinput'   value='" + filter + "' disabled></td></tr>";
                 result += "</table>";
-
+                for (let i=0;i<this.listProduct.length;i++){
+                    if (filter==this.listProduct[i]){
+                        count++;
+                    }
+                }
+                document.getElementById('total1').innerHTML=" ( "+ count + " Product )";
                 return document.getElementById('resultPerson').innerHTML = result;
             }else if (filter=="") {
                 this.showProduct();
 
             }else {
+                document.getElementById('total1').innerHTML=" ( "+ count + " Product )";
                 return document.getElementById('resultPerson').innerHTML = "Rac tiec! Khong tim thay san pham.";
             }
 
@@ -178,7 +185,7 @@
 
     }
 
-    let admin = new AdminProduct(["Sony Xperia", "SamSung Galaxy Note 10", "Nokia 6", "Iphone XSMax", "Xiaomi Mi 5s", "Oppo A71"]);
+    let admin = new AdminProduct(["Sony Xperia", "SamSung Galaxy Note 10", "Nokia 6", "Iphone XsMax", "Xiaomi Mi 5s", "Oppo A71"]);
     let person = new Person();
     admin.showProduct();
     person.setProduct(admin);
@@ -195,8 +202,8 @@
     function deleteProduct(del) {
         admin.deleteProduct(del, person);
     }
-    function filProduct() {
-        person.filProduct();
+    function findProduct() {
+        person.seachProduct();
     }
 
 </script>
