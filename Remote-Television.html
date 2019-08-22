@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Remote Television</title>
+</head>
+<body>
+<script>
+    function Remote(name) {
+        this.name=name;
+        this.setChanelTelevision=function (chanel,tv) {
+            if (tv.power){
+            tv.chanel=chanel;}
+        };
+        this.setVolumeTelevision=function (volume,tv) {
+            if (tv.power){
+            tv.volume+=volume;}
+        };
+        this.turnOnOffTelevision=function (tv) {
+            if (tv.power){
+                tv.power=false;
+            }else {
+                tv.power=true;
+            }
+        };
+
+    }
+    function Television() {
+        this.chanel=null;
+        this.volume=0;
+        this.power=false;
+        this.getChanel=function () {
+            return this.chanel;
+        };
+        this.getVolume=function () {
+            return this.volume;
+        };
+        this.getPower=function () {
+            return this.power;
+        };
+        this.setChanel=function (chanel) {
+            if (this.power){
+            this.chanel=chanel;}
+        };
+        this.setVolume=function (volume) {
+            if (this.power){
+            this.volume=volume;}
+        };
+        this.setOnOff=function () {
+          if (this.power){
+              this.power=false;
+          }else {
+              this.power=true;
+          }
+        };
+    }
+    let remote=new Remote("SamSung");
+    let samsung=new Television();
+    samsung.setOnOff();
+    console.log(samsung.power);
+    samsung.setChanel(7);
+    console.log(samsung.chanel);
+    remote.setChanelTelevision(3,samsung);
+    remote.setVolumeTelevision(2,samsung);
+    remote.turnOnOffTelevision(samsung);
+    console.log(samsung.chanel);
+    console.log(samsung.volume);
+    console.log(samsung.power);
+
+</script>
+</body>
+</html>
