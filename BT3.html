@@ -8,8 +8,8 @@
 <script>
     function Mobile(power) {
         this.bettynow = power;
-        this.inbox = "";
-        this.sent = "";
+        this.inbox = [];
+        this.sent = [];
         this.typingMessage = "";
         this.powerOnOff = true;
         if (this.bettynow <= 0) {
@@ -49,7 +49,7 @@
         };
         this.setSentMessage = function (that) {
             if (this.powerOnOff) {
-                that.inbox = this.typingMessage;
+                that.inbox.push(this.typingMessage);
                 this.bettynow--;
                 console.log(this.inbox);
                 console.log(this.bettynow);
@@ -57,7 +57,7 @@
         };
         this.getSent = function () {
             if (this.powerOnOff) {
-                this.sent = this.typingMessage;
+                this.sent.push(this.typingMessage);
                 this.bettynow--;
                 return this.setSentMessage;
             }
@@ -73,7 +73,9 @@
     iphone.setPowerOn();
     nokia.setCreatMessage();
     nokia.setSentMessage(iphone);
+    console.log(iphone.getInbox());
     alert(iphone.getInbox());
+
 </script>
 </body>
 </html>
