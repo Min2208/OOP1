@@ -5,20 +5,28 @@
     <title>Game lai xe</title>
 </head>
 <body>
-<p id="background"></p>
+<canvas id="myCanvas" width="1000" height="800" style="border: 3px solid blue"></canvas>
 <script>
     let speed = 500;
     let interval = 0;
 
-    function Car(img, top, left, size) {
+    function Car(img, top, left) {
         this.image = img;
         this.top = top;
         this.left = left;
-        this.size = size;
 
         this.showCar = function () {
-            let result = '<img src="' + this.image + '" width="' + this.size + '" height="' + this.size + '" style="left: ' + this.left + 'px; top: ' + this.top + 'px; position: absolute">';
-            return document.getElementById('background').innerHTML = result;
+            let ctx = this.ctx = document.getElementById('myCanvas').getContext('2d');
+
+            let image = new Image();
+            let xPosition = this.left;
+            let yPosition = this.top;
+            ctx.clearRect(xPosition - 110, yPosition - 100, 220, 200);
+            image.onload = function () {
+                ctx.drawImage(image, xPosition, yPosition);
+            };
+            image.src = this.image;
+
         };
         this.moveRight = function () {
             this.left += 20;
@@ -39,12 +47,99 @@
 
     }
 
+    function Enemy() {
+        this.topArr = [];
+        this.leftArr = [];
+        this.top = 100;
+        this.left = 100;
+        let randomLeft=0;
+        let randomTop=0;
+        let ctx = this.ctx = document.getElementById('myCanvas').getContext('2d');
 
-    let camry = new Car('oto.jpg', 500, 500, 50);
-    camry.showCar();
+
+
+        for (let i = 0; i < 15; i++) {
+            this.leftArr.push(Math.floor(Math.random() * 1000));
+            this.topArr.push(Math.floor(Math.random() * 800));
+
+        }
+        this.showStaticBoom = function () {
+            for (let i = 0; i < 15; i++) {
+                this.left = this.leftArr[i];
+                this.top = this.topArr[i];
+                this.changeStaticBoom();
+            }
+        };
+        this.changeStaticBoom = function () {
+            let image = new Image();
+            let xPosition = this.left;
+            let yPosition = this.top;
+            image.onload = function () {
+                ctx.drawImage(image, xPosition, yPosition);
+            };
+            image.src = "boom1.png";
+
+        };
+    //     this.randomBoom = function () {
+    //         // let ctx = this.ctx = document.getElementById('myCanvas').getContext('2d');
+    //         let image = new Image();
+    //
+    //         randomLeft = Math.floor(Math.random()*1000);
+    //         randomTop = Math.floor(Math.random()*800);
+    //         image.onload = function () {
+    //             ctx.drawImage(image, randomLeft, randomTop);
+    //         };
+    //         image.src = "boom3.png";
+    //
+    //     };
+    //     this.removeRandom=function () {
+    //         console.log('aaa');
+    //         ctx.clearRect(randomLeft, randomTop, 54, 67);
+    //     }
+    //
+    // }
+    // function removeBoom() {
+    //     setInterval(boom.removeRandom,1000);
+    }
+    function showDesktop() {
+        boom.showStaticBoom();
+        camry.showCar();
+        // interval=setInterval(boom.randomBoom,1000);
+        // setTimeout(removeBoom,100);
+    }
+
+    function gameBoard() {
+        let carLeft = camry.left;
+        let carRight = camry.left + 50;
+        let carTop = camry.top;
+        let carBottom = camry.top + 30;
+        let boomRight = 0;
+        let boomTop = 0;
+        let boomBottom = 0;
+        let boomLeft = 0;
+        for (let i = 0; i < 15; i++) {
+            boomLeft = boom.leftArr[i];
+            boomRight = boom.leftArr[i] + 30;
+            boomTop = boom.topArr[i];
+            boomBottom = boom.topArr[i] + 32;
+            if (carLeft > boomRight|| carRight<boomLeft||carTop>boomBottom||carBottom<boomTop) {
+                console.log(false);
+            }else {
+
+                console.log(true);
+               return true;
+            }
+        }
+
+    }
+
+
+    let boom = new Enemy();
+    let camry = new Car('oto.png', 500, 500);
+    showDesktop();
 
     function start(event) {
-
+        showDesktop();
 
         switch (event.keyCode) {
             case 17:
@@ -64,8 +159,12 @@
                 }
                 interval = setInterval(function () {
                     camry.moveLeft();
-                    camry.showCar();
-                    console.log(speed);
+                    if (gameBoard()){
+                        clearInterval(interval);
+
+                    }
+                    showDesktop();
+
                 }, speed);
 
                 break;
@@ -75,8 +174,11 @@
                 }
                 interval = setInterval(function () {
                     camry.moveUp();
-                    camry.showCar();
-                    console.log(speed);
+                    if (gameBoard()){
+                        clearInterval(interval);
+                    }
+                    showDesktop();
+
                 }, speed);
 
                 break;
@@ -87,8 +189,11 @@
                 }
                 interval = setInterval(function () {
                     camry.moveRight();
-                    camry.showCar();
-                    console.log(speed);
+                    if (gameBoard()){
+                        clearInterval(interval);
+                    }
+                    showDesktop();
+
 
                 }, speed);
                 break;
@@ -99,13 +204,15 @@
                 }
                 interval = setInterval(function () {
                     camry.moveDown();
-                    camry.showCar();
-                    console.log(speed);
+                    if (gameBoard()){
+                        clearInterval(interval);
+                    }
+                    showDesktop();
                 }, speed);
 
                 break;
         }
-
+        camry.showCar();
     }
 
     window.addEventListener("keydown", start);

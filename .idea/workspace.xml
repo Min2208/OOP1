@@ -2,15 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8035c4c-4248-4ead-ae37-aa46d2d8cb8b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Game-lai-xe.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Lai-oto.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QLGV.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BT1-2.html" beforeDir="false" afterPath="$PROJECT_DIR$/BT1-2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BT2-2.html" beforeDir="false" afterPath="$PROJECT_DIR$/BT2-2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BT3.html" beforeDir="false" afterPath="$PROJECT_DIR$/BT3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Caro.html" beforeDir="false" afterPath="$PROJECT_DIR$/Caro.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lai-oto.html" beforeDir="false" afterPath="$PROJECT_DIR$/Lai-oto.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Quan-Ly-San-Pham.html" beforeDir="false" afterPath="$PROJECT_DIR$/Quan-Ly-San-Pham.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Remote-Television.html" beforeDir="false" afterPath="$PROJECT_DIR$/Remote-Television.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo2.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oto.jpg" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,10 +18,14 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="OOP" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -35,6 +39,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../BaiTapSS3" />
+    <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -47,6 +52,24 @@
         </RuleState>
       </list>
     </option>
+  </component>
+  <component name="RunManager" selected="JavaScript Debug.Caro.html">
+    <configuration name="Caro.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/OOP/Caro.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="Remote-Television.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/OOP/Remote-Television.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="TH1.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/OOP/TH1.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.Caro.html" />
+        <item itemvalue="JavaScript Debug.TH1.html" />
+        <item itemvalue="JavaScript Debug.Remote-Television.html" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -65,7 +88,9 @@
       <workItem from="1566437036324" duration="10679000" />
       <workItem from="1566448809809" duration="13447000" />
       <workItem from="1566485696104" duration="7646000" />
-      <workItem from="1566529268790" duration="1855000" />
+      <workItem from="1566529268790" duration="19344000" />
+      <workItem from="1566567425348" duration="1226000" />
+      <workItem from="1566574337465" duration="14908000" />
     </task>
     <servers />
   </component>

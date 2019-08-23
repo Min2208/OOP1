@@ -80,6 +80,13 @@
     </div>
 </div>
 <script>
+    function Product(name) {
+        this.name=name;
+        
+    }
+    function ShowDesktop() {
+        
+    }
     function AdminProduct(value) {
         this.listProduct = value;
         this.showProduct = function () {
@@ -96,6 +103,7 @@
             this.listProduct.push(value);
             person.listProduct = this.listProduct;
             person.showProduct();
+            
             return this.showProduct();
         };
         this.editProduct = function (local, value, person) {

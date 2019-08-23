@@ -60,13 +60,13 @@
                 this.status=true;
             }
         };
-
     }
     let tivi=new Television(7,25,false);
     let remote=new  Remote("samsung");
 
     remote.connectTelevision(tivi);
     remote.turnOnOff();
+    console.log(tivi.getStatus());
     remote.changeChanel(3);
     remote.changeVolume(2);
     remote.turnOnOff();
@@ -74,6 +74,6 @@
 
 
 
-</script>
+</script>c
 </body>
 </html>

@@ -2,42 +2,134 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Game lai xe</title>
 </head>
 <body>
-<canvas id="myCanvas" width="1368px" height="768px" style="border:1px solid #d3d3d3;"><img src="oto.jpg"></canvas>
+<canvas id="myCanvas" width="1000" height="800" style="border: 3px solid blue"></canvas>
 <script>
-    // function Car(img, top, left, size) {
-    //     this.image = img;
-    //     this.top = top;
-    //     this.left = left;
-    //     this.size = size;
-    //
-    //     this.showCar = function () {
-    //         let result = '<img src="' + this.image + '" width="' + this.size + '" height="' + this.size + '" style="left: ' + this.left + 'px; top: ' + this.top + 'px; position: absolute">';
-    //         return document.getElementById('myCanvas').innerHTML = result;
-    //     };
-    //     this.moveRight = function () {
-    //         this.left += 20;
-    //
-    //     };
-    //     this.moveLeft = function () {
-    //         this.left -= 20;
-    //
-    //     };
-    //     this.moveUp = function () {
-    //         this.top -= 20;
-    //
-    //         this.showCar();
-    //     };
-    //     this.moveDown = function () {
-    //         this.top += 20;
-    //     };
-    //
-    // }
-    //     let camry = new Car('oto.jpg', 500, 500, 50);
-    //     camry.showCar();
+    let speed = 500;
+    let interval = 0;
 
+    function Car(img, top, left) {
+        this.image = img;
+        this.top = top;
+        this.left = left;
+
+        this.showCar = function () {
+            let ctx = this.ctx = document.getElementById('myCanvas').getContext('2d');
+            let image = new Image();
+            let xPosition = this.left;
+            let yPosition = this.top;
+            ctx.clearRect(1, 1, 1000, 800);
+            image.onload = function () {
+                ctx.drawImage(image, xPosition, yPosition);
+            };
+            image.src = this.image;
+        };
+        this.moveRight = function () {
+            this.left += 20;
+
+        };
+        this.moveLeft = function () {
+            this.left -= 20;
+
+        };
+        this.moveUp = function () {
+            this.top -= 20;
+
+            this.showCar();
+        };
+        this.moveDown = function () {
+            this.top += 20;
+        };
+
+    }
+
+    function Enemy(img) {
+
+        this.showBoom = function () {
+            let ctx = this.ctx = document.getElementById('myCanvas').getContext('2d');
+            ctx.beginPath();
+            ctx.arc(500,20,20,0,2*Math.PI);
+            ctx.fillStyle='red';
+            ctx.fill();
+        };
+    }
+
+    function showDesktop() {
+        boom.showBoom();
+        camry.showCar();
+    }
+
+    let boom = new Enemy('boom1.png', 300, 400);
+    let camry = new Car('oto.png', 500, 500);
+    showDesktop();
+
+    function start(event) {
+        showDesktop();
+        switch (event.keyCode) {
+            case 17:
+                if (speed > 100) {
+                    speed -= 100;
+                }
+                break;
+            case 16:
+                if (speed < 500) {
+                    speed += 100;
+                }
+                break;
+            case 37:
+
+                if (interval) {
+                    clearInterval(interval);
+                }
+                interval = setInterval(function () {
+                    camry.moveLeft();
+                    showDesktop();
+                    console.log(speed);
+                }, speed);
+
+                break;
+            case 38:
+                if (interval) {
+                    clearInterval(interval);
+                }
+                interval = setInterval(function () {
+                    camry.moveUp();
+                    showDesktop();
+                    console.log(speed);
+                }, speed);
+
+                break;
+            case 39:
+
+                if (interval) {
+                    clearInterval(interval);
+                }
+                interval = setInterval(function () {
+                    camry.moveRight();
+                    showDesktop();
+                    console.log(speed);
+
+                }, speed);
+                break;
+            case 40:
+
+                if (interval) {
+                    clearInterval(interval);
+                }
+                interval = setInterval(function () {
+                    camry.moveDown();
+                    showDesktop();
+                    console.log(speed);
+                }, speed);
+
+                break;
+        }
+        camry.showCar();
+    }
+
+    window.addEventListener("keydown", start);
 </script>
 </body>
 </html>
