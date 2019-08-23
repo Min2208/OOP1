@@ -20,7 +20,7 @@
         this.weight=weight;
         this.isMale=male;
         this.say=function () {
-            alert('Adam Eva')
+            alert("toi la "+ this.name)
         };
         this.eatApple=function (apple) {
           if (apple.getWeight()>0){
@@ -45,8 +45,6 @@
         this.getWeight=function (person) {
             return person.weight;
         }
-
-
     }
     let apple=new Apple();
     let adam=new Human("Adam",60,"male");

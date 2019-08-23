@@ -50,6 +50,7 @@
         this.setSentMessage = function (that) {
             if (this.powerOnOff) {
                 that.inbox.push(this.typingMessage);
+                this.sent.push(this.typingMessage);
                 this.bettynow--;
                 console.log(this.inbox);
                 console.log(this.bettynow);
@@ -57,7 +58,6 @@
         };
         this.getSent = function () {
             if (this.powerOnOff) {
-                this.sent.push(this.typingMessage);
                 this.bettynow--;
                 return this.setSentMessage;
             }

@@ -6,66 +6,73 @@
 </head>
 <body>
 <script>
-    function Remote(name) {
-        this.name=name;
-        this.setChanelTelevision=function (chanel,tv) {
-            if (tv.power){
-            tv.chanel=chanel;}
+    function Remote(model) {
+        this.model=model;
+        this.connect=null;
+        this.changeChanel=function (chanel) {
+            this.connect.changeChanel(chanel);
         };
-        this.setVolumeTelevision=function (volume,tv) {
-            if (tv.power){
-            tv.volume+=volume;}
+        this.changeVolume=function (volume) {
+            this.connect.changeVolume(volume);
         };
-        this.turnOnOffTelevision=function (tv) {
-            if (tv.power){
-                tv.power=false;
+        this.connectTelevision=function (tivi) {
+            this.connect=tivi;
+        };
+        this.turnOnOff=function () {
+            if (this.connect.status){
+                this.connect.turnOnOff();
             }else {
-                tv.power=true;
+                this.connect.turnOnOff();
+            }
+        };
+        this.getInfo=function () {
+            this.connect.getInfo();
+        }
+    }
+    function Television(chanel,volume,status) {
+        this.currentChanle=chanel;
+        this.currentVolume=volume;
+        this.status=status;
+        this.getInfo=function () {
+            alert("Channel: "+this.currentChanle +" , " + " Volume: "+ this.currentVolume);
+        };
+        this.changeChanel=function (chanel) {
+            if (this.status){
+            this.currentChanle=chanel;
+            }else {
+                alert("Tivi dang tat");
+            }
+        };
+        this.changeVolume=function (volume) {
+            if (this.status) {
+                this.currentVolume += volume;
+            }else {
+                alert("Tivi dang tat");
+            }
+        };
+        this.getStatus=function () {
+            return this.status;
+        };
+        this.turnOnOff=function () {
+            if (this.status){
+                this.status=false;
+            }else {
+                this.status=true;
             }
         };
 
     }
-    function Television() {
-        this.chanel=null;
-        this.volume=0;
-        this.power=false;
-        this.getChanel=function () {
-            return this.chanel;
-        };
-        this.getVolume=function () {
-            return this.volume;
-        };
-        this.getPower=function () {
-            return this.power;
-        };
-        this.setChanel=function (chanel) {
-            if (this.power){
-            this.chanel=chanel;}
-        };
-        this.setVolume=function (volume) {
-            if (this.power){
-            this.volume=volume;}
-        };
-        this.setOnOff=function () {
-          if (this.power){
-              this.power=false;
-          }else {
-              this.power=true;
-          }
-        };
-    }
-    let remote=new Remote("SamSung");
-    let samsung=new Television();
-    samsung.setOnOff();
-    console.log(samsung.power);
-    samsung.setChanel(7);
-    console.log(samsung.chanel);
-    remote.setChanelTelevision(3,samsung);
-    remote.setVolumeTelevision(2,samsung);
-    remote.turnOnOffTelevision(samsung);
-    console.log(samsung.chanel);
-    console.log(samsung.volume);
-    console.log(samsung.power);
+    let tivi=new Television(7,25,false);
+    let remote=new  Remote("samsung");
+
+    remote.connectTelevision(tivi);
+    remote.turnOnOff();
+    remote.changeChanel(3);
+    remote.changeVolume(2);
+    remote.turnOnOff();
+    remote.getInfo();
+
+
 
 </script>
 </body>

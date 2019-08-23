@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game lai xe</title>
+</head>
+<body>
+<p id="background"></p>
+<script>
+    let speed = 500;
+    let interval = 0;
+
+    function Car(img, top, left, size) {
+        this.image = img;
+        this.top = top;
+        this.left = left;
+        this.size = size;
+
+        this.showCar = function () {
+            let result = '<img src="' + this.image + '" width="' + this.size + '" height="' + this.size + '" style="left: ' + this.left + 'px; top: ' + this.top + 'px; position: absolute">';
+            return document.getElementById('background').innerHTML = result;
+        };
+        this.moveRight = function () {
+            this.left += 20;
+
+        };
+        this.moveLeft = function () {
+            this.left -= 20;
+
+        };
+        this.moveUp = function () {
+            this.top -= 20;
+
+            this.showCar();
+        };
+        this.moveDown = function () {
+            this.top += 20;
+        };
+
+    }
+
+
+    let camry = new Car('oto.jpg', 500, 500, 50);
+    camry.showCar();
+
+    function start(event) {
+
+
+        switch (event.keyCode) {
+            case 17:
+                if (speed > 100) {
+                    speed -= 100;
+                }
+                break;
+            case 16:
+                if (speed < 500) {
+                    speed += 100;
+                }
+                break;
+            case 37:
+
+                if (interval) {
+                    clearInterval(interval);
+                }
+                interval = setInterval(function () {
+                    camry.moveLeft();
+                    camry.showCar();
+                    console.log(speed);
+                }, speed);
+
+                break;
+            case 38:
+                if (interval) {
+                    clearInterval(interval);
+                }
+                interval = setInterval(function () {
+                    camry.moveUp();
+                    camry.showCar();
+                    console.log(speed);
+                }, speed);
+
+                break;
+            case 39:
+
+                if (interval) {
+                    clearInterval(interval);
+                }
+                interval = setInterval(function () {
+                    camry.moveRight();
+                    camry.showCar();
+                    console.log(speed);
+
+                }, speed);
+                break;
+            case 40:
+
+                if (interval) {
+                    clearInterval(interval);
+                }
+                interval = setInterval(function () {
+                    camry.moveDown();
+                    camry.showCar();
+                    console.log(speed);
+                }, speed);
+
+                break;
+        }
+
+    }
+
+    window.addEventListener("keydown", start);
+</script>
+</body>
+</html>
